@@ -4,7 +4,7 @@ from afa.models import Afa, Entity, AfaYearError
 from afa.afa2json import Afa2Json
 from djmoney.money import Money
 
-BIERZELT_ID = 'Zelte, Bier- '
+BIERZELT_ID = "Zelte, Bier- "
 BIERZELT_NAME = "Unser Bierzelt"
 
 
@@ -21,7 +21,7 @@ class AfaCreateCase(TestCase):
             a = Afa.objects.create(
                 title=entry["title"],
                 useful_life=entry["useful_life"],
-                source=entry["source"]
+                source=entry["source"],
             )
             a.save()
 
@@ -31,7 +31,7 @@ class AfaCreateCase(TestCase):
             name=BIERZELT_NAME,
             price=Money(9600.00, "EUR"),
             date_of_purchase=date(year=2021, month=4, day=21),
-            afa_type=bierzelt_type
+            afa_type=bierzelt_type,
         )
         ub.save()
 
@@ -49,7 +49,7 @@ class AfaUseCase(TestCase):
             a = Afa.objects.create(
                 title=entry["title"],
                 useful_life=entry["useful_life"],
-                source=entry["source"]
+                source=entry["source"],
             )
             a.save()
         bierzelt_type = Afa.objects.get(title=BIERZELT_ID)
@@ -57,7 +57,7 @@ class AfaUseCase(TestCase):
             name=BIERZELT_NAME,
             price=Money(9600.00, "EUR"),
             date_of_purchase=date(year=2021, month=4, day=21),
-            afa_type=bierzelt_type
+            afa_type=bierzelt_type,
         )
         ub.save()
 

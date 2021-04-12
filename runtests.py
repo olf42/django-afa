@@ -8,12 +8,10 @@ from django.core.management import execute_from_command_line
 from django.test.utils import get_runner
 
 if __name__ == "__main__":
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'afa.tests.settings'
+    os.environ["DJANGO_SETTINGS_MODULE"] = "afa.tests.settings"
     django.setup()
     execute_from_command_line(["", "makemigrations"])
     TestRunner = get_runner(settings)
     test_runner = TestRunner()
     failures = test_runner.run_tests(["afa.tests"])
     sys.exit(bool(failures))
-
-

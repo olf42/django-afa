@@ -29,11 +29,9 @@ class Afa2Json:
         next(afa_table, None)  # Skip header
         next(afa_table, None)  # Skip header
         next(afa_table, None)  # Skip header
-        afa_list = [{
-            'title': r[0],
-            'useful_life': r[1],
-            'source': r[2]
-        } for r in afa_table]
+        afa_list = [
+            {"title": r[0], "useful_life": r[1], "source": r[2]} for r in afa_table
+        ]
         return afa_list
 
     @classmethod

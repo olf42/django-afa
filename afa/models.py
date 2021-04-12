@@ -17,7 +17,7 @@ class Afa(models.Model):
 class Entity(models.Model):
     name = models.CharField(max_length=255)
     date_of_purchase = models.DateField()
-    price = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR')
+    price = MoneyField(max_digits=14, decimal_places=2, default_currency="EUR")
     afa_type = models.ForeignKey("Afa", on_delete=models.PROTECT)
 
     def deduction(self, year: int):
@@ -26,13 +26,15 @@ class Entity(models.Model):
         months_1st_year = 12 - month_of_purchase + 1
         months_last_year = 12 - months_1st_year
         if year < self.date_of_purchase.year:
-            raise AfaYearError("Deduction is only allowed in or after the year of purchase.")
+            raise AfaYearError(
+                "Deduction is only allowed in or after the year of purchase."
+            )
         if (year - self.date_of_purchase.year) == 0:
-            return (months_1st_year/(12*useful_life))*self.price
+            return (months_1st_year / (12 * useful_life)) * self.price
         elif (year - self.date_of_purchase.year) < useful_life:
-            return 1/useful_life*self.price
+            return 1 / useful_life * self.price
         else:
-            return (months_last_year/(12*useful_life))*self.price
+            return (months_last_year / (12 * useful_life)) * self.price
 
     @property
     def deduction_plan(self):
