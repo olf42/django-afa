@@ -5,6 +5,10 @@ description = "Aufwendungen für Abschreibung"
 authors = ["Florian Rämisch <olf@subsignal.org>"]
 license = "GPL-3.0"
 
+packages = [
+    { include="afa", from="." },
+]
+
 [tool.poetry.scripts]
 afa2json = "afa.afa2json:main"
 
